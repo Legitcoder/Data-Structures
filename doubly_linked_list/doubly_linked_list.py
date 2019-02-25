@@ -54,6 +54,7 @@ class DoublyLinkedList:
   def add_to_tail(self, value):
     list_node = ListNode(value)
     self.tail.next = list_node
+    list_node.prev = self.tail
     self.tail = self.tail.next
 
   def remove_from_tail(self):
