@@ -63,7 +63,9 @@ class DoublyLinkedList:
 
 
   def move_to_front(self, node):
-    pass
+    self.delete(node)
+    self.add_to_head(node)
+    return self.head.value
 
   def move_to_end(self, node):
     pass
@@ -72,4 +74,9 @@ class DoublyLinkedList:
     pass
     
   def get_max(self):
-    pass
+    maximum = float("-inf")
+    head = self.head
+    while head is not None:
+      if head.value > maximum: maximum = head.value
+      head = head.next
+    return maximum
