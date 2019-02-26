@@ -53,16 +53,12 @@ class Heap:
     left = self.get_left_child(index)
     right = self.get_right_child(index)
     while current_node < left or current_node < right:
-      #print(f'{current_node} > {left} and {right}')
+      current_node = self.storage[index]
+      left = self.get_left_child(index)
+      right = self.get_right_child(index)
       if left > current_node and left >= right:
         self.storage[(2 * index) + 1], self.storage[index] = self.storage[index], self.storage[(2*index) + 1]
         index = (2 * index) + 1
-        current_node = self.storage[index]
-        left = self.get_left_child(index)
-        right = self.get_right_child(index)
       elif right > current_node and right >= left:
         self.storage[(2 * index) + 2], self.storage[index] = self.storage[index], self.storage[(2*index) + 2]
         index = (2 * index) + 2
-        current_node = self.storage[index]
-        left = self.get_left_child(index)
-        right = self.get_right_child(index)
