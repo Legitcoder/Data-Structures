@@ -49,10 +49,7 @@ class Heap:
     return float("-inf")
 
   def _sift_down(self, index):
-    current_node = self.storage[index]
-    left = self.get_left_child(index)
-    right = self.get_right_child(index)
-    while current_node < left or current_node < right:
+    while self.storage[index] < self.get_left_child(index) or self.storage[index] < self.get_right_child(index):
       current_node = self.storage[index]
       left = self.get_left_child(index)
       right = self.get_right_child(index)
@@ -62,3 +59,16 @@ class Heap:
       elif right > current_node and right >= left:
         self.storage[(2 * index) + 2], self.storage[index] = self.storage[index], self.storage[(2*index) + 2]
         index = (2 * index) + 2
+
+
+heap = Heap()
+heap.insert(6)
+heap.insert(8)
+heap.insert(10)
+heap.insert(9)
+heap.insert(1)
+heap.insert(9)
+heap.insert(9)
+heap.insert(5)
+heap.insert(88)
+print(heap.storage)
