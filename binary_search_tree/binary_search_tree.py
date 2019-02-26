@@ -43,15 +43,4 @@ class BinarySearchTree:
 
 
   def get_max(self):
-    pass
-
-bst = BinarySearchTree(5)
-bst.insert(2)
-bst.insert(3)
-print(bst.value)
-bst.insert(7)
-bst.insert(6)
-print(bst.left.value)
-print(bst.right.value)
-print(bst.right.left.value)
-print(bst.left.right.value)
+    return self.value if self.right is None else self.right.get_max()
