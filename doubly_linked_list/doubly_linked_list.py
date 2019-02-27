@@ -40,6 +40,24 @@ class DoublyLinkedList:
     self.tail = node
 
   def add_to_head(self, value):
+    if self.head is None and self.tail is None:
+      self.head = ListNode(value)
+      self.tail = self.head
+      self.tail.next = None
+      self.tail.prev = None
+      self.head.next = None
+      self.head.prev = None
+      return
+
+    if self.head is self.tail:
+      self.head = None
+      list_node = ListNode(value)
+      self.tail.prev = self.head
+      self.head = list_node
+      self.head.next = self.tail
+      return
+
+
     list_node = ListNode(value)
     new_next = self.head
     self.head.prev = list_node
@@ -52,6 +70,23 @@ class DoublyLinkedList:
     return deleted_head.value
 
   def add_to_tail(self, value):
+    if self.head is None and self.tail is None:
+      self.head = ListNode(value)
+      self.tail = self.head
+      self.tail.next = None
+      self.tail.prev = None
+      self.head.next = None
+      self.head.prev = None
+      return
+
+    if self.head is self.tail:
+      self.tail = None
+      list_node = ListNode(value)
+      self.tail = list_node
+      self.tail.prev = self.head
+      self.head.next = self.tail
+      return
+
     list_node = ListNode(value)
     self.tail.next = list_node
     list_node.prev = self.tail
@@ -59,7 +94,7 @@ class DoublyLinkedList:
 
   def remove_from_tail(self):
     deleted_tail = self.tail
-    self.delete(self.tail)
+    self.tail.delete()
     return deleted_tail.value
 
 
@@ -74,7 +109,23 @@ class DoublyLinkedList:
     return self.head.value
 
   def delete(self, node):
-    pass
+    if node.next is None and node.prev is None and self.head is node and self.tail is node:
+      self.head = None
+      self.tail = None
+      return
+    #This is the head
+    if node.prev is None and node.next is not None:
+      self.head = node.next
+
+
+    #This is the tail
+    if node.next is None and node.prev is not None:
+      self.tail = node.prev
+
+    node.prev = self.head
+    if node.next is not None: self.head = node.next
+    if node.next.next is not None: self.head.next = node.next.next
+
     
   def get_max(self):
     maximum = float("-inf")
